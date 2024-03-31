@@ -113,10 +113,10 @@ const JobCategoryPage = () => {
           Join Ethiopia’s Large Work Marketplace
         </h1>
       </div>
-      <div className="flex flex-col gap-2 px-20 my-10">
+      <div className="flex flex-col gap-2 md:px-20 px-2 my-10">
         {posts.length == 0 && <Skeleton count={2} height={100} />}
       </div>
-      <div className="flex flex-col gap-2 px-20 my-10">
+      <div className="flex flex-col gap-2 md:px-20 px-2 my-10">
         {posts.map((item, index) => (
           <div
             onClick={() => navigate(`/job/${item._id}`)}
@@ -134,12 +134,12 @@ const JobCategoryPage = () => {
                   <Skeleton />
                 )}
               </div>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 ">
                 <div>
                   {item.job_title || <Skeleton />} -{" "}
                   {item.employer_detail[0].company_name || <Skeleton />}
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center md:gap-4 gap-1">
                   posted at
                   <div className="flex items-center gap-2">
                     <BiCalendar /> {new Date(item.createdAt).toDateString()}
@@ -148,10 +148,12 @@ const JobCategoryPage = () => {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <button className="bg-black text-white group-hover:text-black group-hover:bg-white px-3 py-2 rounded shadow-lg">
+              <button className="bg-black text-white group-hover:text-black group-hover:bg-white md:px-3  px-1 py-2 rounded shadow-lg">
                 view more{" "}
               </button>
-              <p className="text-center">{calculateDate(item.createdAt)} ago</p>
+              <p className="text-center text-sm">
+                {calculateDate(item.createdAt)} ago
+              </p>
             </div>
           </div>
         ))}

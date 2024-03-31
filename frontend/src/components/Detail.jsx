@@ -215,7 +215,7 @@ const Detail = () => {
         <DisplayDetailInfo handleGoToUpdate={showUpdateDetail} />
       </div>
       <div className={clsx(!showDisplay ? "" : "hidden")}>
-        <div className="flex flex-col px-20 pt-3 gap-5  ">
+        <div className="flex flex-col md:px-20 px-5 pt-3 gap-5  ">
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl font-semibold ">
               Tell Us About Your Self{" "}
@@ -229,12 +229,12 @@ const Detail = () => {
           <div>
             <p>Make easier for employers to contact you</p>
             <form>
-              <div className="flex flex-row w-screen">
-                <div className="flex flex-col w-1/2">
+              <div className="flex md:flex-row flex-col w-screen">
+                <div className="flex flex-col md:w-1/2">
                   <div className="flex flex-row flex-wrap gap-5 mt-5">
                     <div className="flex flex-col gap-2 w-1/4">
                       <label htmlFor="country" className="text-sm">
-                        Country of Residence
+                        Country
                       </label>
                       <select
                         id="country"
@@ -316,7 +316,7 @@ const Detail = () => {
                   </button>
                 </div>
 
-                <div id="" className="flex flex-col  w-1/2 pr-10">
+                <div id="" className="flex flex-col  md:w-1/2 pr-10">
                   <div className="flex flex-col gap-2 pt-4">
                     <p className="text-sm">Profession</p>
                     <MultipleSelector

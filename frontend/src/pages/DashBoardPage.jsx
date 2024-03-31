@@ -59,7 +59,7 @@ const DashBoardPage = () => {
           Welcome {userInfo.company_name}
         </div>
 
-        <div className="flex flex-row px-20 py-10  gap-10">
+        <div className="flex md:flex-row flex-col md:px-20 px-2 py-10  gap-10">
           <div className="flex-1 border  rounded-lg shadow-lg p-10 bg-gradient-to-l from-black">
             <div className="flex flex-row justify-between items-center">
               <div className="flex gap-10 items-center ">
@@ -94,15 +94,15 @@ const DashBoardPage = () => {
           </div>
         </div>
 
-        <div className="px-20 text-3xl font-bold pb-10">YOUR JOBS</div>
+        <div className="md:px-20 px-2 text-3xl font-bold pb-10">YOUR JOBS</div>
         {MyPosts.length == 0 ? (
           loading ? (
-            <div className="px-20 gap-10 w-1/2 rounded-lg">
+            <div className="md:px-20 px-2 gap-10 md:w-1/2 rounded-lg">
               <Skeleton count={5} height={30} />
               <Skeleton count={5} height={30} />
             </div>
           ) : (
-            <div className="px-20 gap-10 w-1/2 rounded-lg">
+            <div className="md:px-20 px-2 gap-10 md:w-1/2 rounded-lg">
               {" "}
               No job posted yet
             </div>
@@ -113,14 +113,14 @@ const DashBoardPage = () => {
           //   <Skeleton count={5} height={30} />
           // </div>
           <>
-            <div className="flex flex-wrap px-20 gap-10">
+            <div className="flex flex-wrap md:px-20 px-2 gap-10">
               {subset.map((post, id) => (
                 <li
                   key={id}
                   // onClick={() => {
                   //   navigate(`/post/${post._id}`);
                   // }}
-                  className="list-none w-2/5 border border-black rounded-lg hover:shadow-lg bg-white"
+                  className="list-none md:w-2/5 w-full border border-black rounded-lg hover:shadow-lg bg-white"
                 >
                   <div className="flex flex-col   p-3 gap-3">
                     <div className="text-2xl">{post.job_title}</div>

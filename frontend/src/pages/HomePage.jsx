@@ -14,6 +14,13 @@ function HomePage() {
   const [latestJobs, setLatestJobs] = useState([]);
   const [Info, setInfo] = useState({});
   const navigate = useNavigate();
+  const [formdata, setformdata] = useState({
+    searchTerm: "",
+    job_category: "",
+    work_location: "",
+    sort: "created_at",
+    // order: "desc",
+  });
   const location = [
     "addis ababa",
     "assela",
@@ -25,6 +32,28 @@ function HomePage() {
     "dire dawa",
     "debrezeyt",
   ];
+
+  const handleChange = (e) => {
+    setformdata({
+      ...formdata,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  useEffect(() => {
+    console.log("hello" + formdata.searchTerm);
+  }, [formdata]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams();
+    urlParams.set("searchTerm", formdata.searchTerm);
+    urlParams.set("work_location", formdata.work_location);
+    urlParams.set("job_category", formdata.job_category);
+
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
 
   const calculateDate = (posted_date) => {
     var currentDate = new Date();
@@ -105,8 +134,8 @@ function HomePage() {
         </h1>
       </div>
       <div className="flex flex-col pb-20 gap-10">
-        <div className="flex mt-20 w-full justify-center ">
-          <div className="flex flex-row justify-between gap-20 ">
+        <div className="flex md:mt-20 mt-10 w-full justify-center ">
+          <div className="flex flex-col md:flex-row justify-between md:gap-20 gap-10">
             <div className="flex flex-col gap-2 items-center ">
               <div className="text-3xl font-semibold">
                 <CountUp end={Info.no_of_posts} />+
@@ -135,73 +164,83 @@ function HomePage() {
           </div>
         </div>
 
-        <div className="flex flex-col px-20 w-full items-center gap-5">
-          <div className="text-4xl font-bold">Find New Jobs in Ethiopia</div>
-          <div className="flex flex-row gap-3">
-            <div className="flex flex-1">
-              <input
-                id="keyword"
-                name="keyword"
-                type="text"
-                placeholder="keyword"
-                className="p-2 bg-white border"
-              />
-            </div>
-            <div className="p-2 bg-white border-2 flex-1">
-              <select
-                id="job_category"
-                name="country"
-                className="hover:border-0 ring-0 outline-none focus:hover:border-0 p-1 w-full flex-1"
-                placeholder="select job catergory"
-                selected="false"
-                defaultValue=""
-                // onChange={handleCountryChange}
-              >
-                <option disabled={true} value="">
-                  Job Category
-                </option>
-                {profession.map((item, i) => (
-                  <option key={i} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="p-2 bg-white border-2 flex-1">
-              <select
-                id="location"
-                name="location"
-                className="hover:border-0 ring-0 outline-none focus:hover:border-0 p-1 w-full flex-1"
-                placeholder="select location"
-                selected="false"
-                defaultValue=""
-                // onChange={handleCountryChange}
-              >
-                <option disabled={true} value="">
-                  find by location
-                </option>
-                {location.map((item, i) => (
-                  <option key={i} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="flex-1">
-              <button className="text-white bg-black h-full border-0 px-10">
-                Search
-              </button>
-            </div>
+        <div className="flex flex-col md:px-20 px-15 w-full items-center gap-5">
+          <div className="text-3xl sm:text-3xl md:text-4xl font-bold">
+            Find New Jobs in Ethiopia
           </div>
+          <form>
+            <div className="flex flex-col md:flex-row gap-3">
+              <div className="flex flex-1">
+                <input
+                  id="searchTerm"
+                  name="keyword"
+                  type="text"
+                  placeholder="keyword"
+                  onChange={handleChange}
+                  className="p-2 bg-white border w-full"
+                />
+              </div>
+              <div className="p-2 bg-white border-2 flex-1">
+                <select
+                  id="job_category"
+                  name="country"
+                  className="hover:border-0 ring-0 outline-none focus:hover:border-0 p-1 w-full flex-1"
+                  placeholder="select job catergory"
+                  selected="false"
+                  onChange={handleChange}
+                  defaultValue=""
+                  // onChange={handleCountryChange}
+                >
+                  <option disabled={true} value="">
+                    Job Category
+                  </option>
+                  {profession.map((item, i) => (
+                    <option key={i} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="p-2 bg-white border-2 flex-1">
+                <select
+                  id="work_location"
+                  name="location"
+                  className="hover:border-0 ring-0 outline-none focus:hover:border-0 p-1 w-full flex-1"
+                  placeholder="select location"
+                  selected="false"
+                  onChange={handleChange}
+                  defaultValue=""
+                  // onChange={handleCountryChange}
+                >
+                  <option disabled={true} value="">
+                    find by location
+                  </option>
+                  {location.map((item, i) => (
+                    <option key={i} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex-1">
+                <button
+                  onClick={handleSubmit}
+                  className="text-white bg-black h-full border-0 px-10 py-2 md:py-0 w-full md:w-fit"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 w-3/4 mx-auto list-none justify-center place-items-center bg-white rounded-lg p-10 ">
+        <div className="grid sm:grid-cols-3 grid-cols-2 gap-4 w-3/4 mx-auto list-none justify-center md:place-items-center items-start bg-white rounded-lg p-10 ">
           {availableJobByCategory.map((item, index) => (
             <li
               key={index}
-              className="cursor-pointer"
+              className="cursor-pointer "
               onClick={() => navigate(`/job-category/${item._id}`)}
             >
               {item._id}{" "}
@@ -210,7 +249,7 @@ function HomePage() {
           ))}
         </div>
 
-        <div className="w-3/4 mx-auto mt-5">
+        <div className="md:w-3/4 mx-auto mt-5 px-5 md:px-0">
           <div className="text-3xl font-bold mb-5">
             Latest Jobs in Ethiopia{" "}
           </div>
@@ -220,9 +259,9 @@ function HomePage() {
               <div
                 onClick={() => navigate(`/job/${item._id}`)}
                 key={index}
-                className="group cursor-pointer bg-white p-5 flex flex-row justify-between hover:bg-black hover:text-white "
+                className="group cursor-pointer bg-white p-5 flex flex-col sm:flex-row sm:gap-0 gap-5  justify-between hover:bg-black hover:text-white "
               >
-                <div className="flex gap-5">
+                <div className="flex gap-5 ">
                   <div>
                     {item.employer_detail[0].company_image ? (
                       <img
@@ -246,7 +285,7 @@ function HomePage() {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex sm:flex-col gap-2 justify-between">
                   <button className="bg-black text-white group-hover:text-black group-hover:bg-white px-3 py-2 rounded shadow-lg">
                     view more{" "}
                   </button>

@@ -88,7 +88,7 @@ const PostJobPage = () => {
   return (
     <div className="py-16">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col w-2/3 mx-auto gap-5">
+        <div className="flex flex-col md:w-2/3 w-full px-5 mx-auto gap-5">
           <div className="text-3xl font-bold text-center">Post Vacancy</div>
 
           <div className="flex flex-row gap-5 ">

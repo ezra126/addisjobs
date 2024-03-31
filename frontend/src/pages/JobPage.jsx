@@ -127,15 +127,15 @@ const JobPage = () => {
     urlParams.set("work_location", sidebardata.work_location);
     urlParams.set("job_category", sidebardata.job_category);
     urlParams.set("sort", sidebardata.sort);
-    urlParams.set("order", sidebardata.order);
+    // urlParams.set("order", sidebardata.order);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
 
   return (
     <div className="mt-16">
-      <div className="flex flex-row w-full">
-        <form className="flex flex-col w-1/3 border-r-2 h-screen pt-10 px-10 gap-3">
+      <div className="flex md:flex-row flex-col w-full">
+        <form className="flex flex-col md:w-1/3 w-full md:border-r-2 md:h-screen pt-10 px-10 gap-3">
           <div>
             <div
               id="searchTermContainer"

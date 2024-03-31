@@ -51,7 +51,7 @@ const JobDetailPage = () => {
         ></img>
       </div>
       <div className="mt-10 px-20 ">
-        <div className="flex flex-col w-3/5 gap-3">
+        <div className="flex flex-col md:w-3/5 gap-3">
           <div className="text-3xl font-semibold tracking-wide">
             {job[0].job_title} - {job[0].employer_detail[0].company_name}
           </div>

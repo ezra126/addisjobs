@@ -137,7 +137,7 @@ const EditJobPage = () => {
   return (
     <div className="py-16">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col w-2/3 mx-auto gap-5">
+        <div className="flex flex-col md:w-2/3 px-5 mx-auto gap-5">
           <div className="text-3xl font-bold text-center">Edit Vacancy</div>
 
           <div className="flex flex-row gap-5 ">
@@ -265,7 +265,7 @@ const EditJobPage = () => {
           </div>
 
           <div className="flex flex-row gap-5 ">
-            <div className="flex flex-row w-1/2 justify-between">
+            <div className="flex flex-row w-1/2 justify-between gap-1 md:gap-0">
               <div className="flex  flex-col w-3/5">
                 <p>Work Location*</p>
                 <div className="p-2 bg-white  border-2 rounded-lg">
