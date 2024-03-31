@@ -5,10 +5,13 @@ import userRouter from "./routes/user.route.js";
 import employerRouter from "./routes/employer.route.js";
 import postRouter from "./routes/post.route.js";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 const app = express();
 
 connectToDatabase();
+
+const __dirname = path.resolve();
 
 app.use(express.json());
 
@@ -18,6 +21,12 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/employer", employerRouter);
 app.use("/api/post", postRouter);
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "intex.html"));
+});
 
 app.use(function (error, request, response, next) {
   const statusCode = error.statusCode || 500;
